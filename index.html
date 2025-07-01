@@ -20,35 +20,101 @@
       background-color: #f0f0f0;
       color: #141414;
     }
-    body.light-mode .title-container {
-      background-color: #ddd;
-      box-shadow: 0 0 15px #5a5a5a;
+
+    /* Loader */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background-color: #141414;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      transition: opacity 0.5s ease;
     }
-    body.light-mode .title {
-      color: #141414;
-      text-shadow: none;
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
-    body.light-mode .title::after {
-      background: #555;
+    .loader-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #cd5c5c;
+      animation: spinPulse 2.5s infinite ease-in-out;
+      text-shadow: 0 0 15px #cd5c5c, 0 0 30px #cd5c5c;
+    }
+    .loader-line {
+      height: 4px;
+      background-color: #cd5c5c;
+      border-radius: 2px;
+      opacity: 0;
+      transform: scaleX(0);
+      animation: growLine 1.5s forwards;
+    }
+    .loader-line.top {
+      width: 80px;
+      animation-delay: 0.2s;
+      transform-origin: right;
+    }
+    .loader-line.bottom {
+      width: 80px;
+      animation-delay: 0.6s;
+      transform-origin: left;
+    }
+
+    @keyframes spinPulse {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(3deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    @keyframes growLine {
+      to {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    }
+
+    body.light-mode #loader {
+      background-color: #f0f0f0;
+    }
+    body.light-mode .loader-logo {
+      color: #5c5ccf;
+      text-shadow: 0 0 15px #5c5ccf, 0 0 30px #5c5ccf;
+    }
+    body.light-mode .loader-line {
+      background-color: #5c5ccf;
+    }
+
+    /* MODE TOGGLE */
+    #modeToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #f0f0f0;
+      background-color: #cd5c5c;
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-weight: bold;
+      box-shadow: 0 0 10px #cd5c5c;
+      transition: background-color 0.4s, color 0.4s;
+    }
+    body.light-mode #modeToggle {
+      background-color: #555;
+      color: #ddd;
       box-shadow: 0 0 10px #555;
-      opacity: 0.7;
     }
-    body.light-mode .button-label {
-      color: #141414;
-      text-shadow: none;
-    }
-    body.light-mode .content-box {
-      background-color: #ddd;
-      box-shadow: 0 0 10px #555;
-      color: #141414;
-    }
-    body.light-mode .uploaded-item {
-      border-color: #555;
-      box-shadow: 0 0 8px #555;
-    }
-    body.light-mode .uploaded-item:hover {
-      box-shadow: 0 0 15px #555;
-    }
+
+    /* TITLE SECTION */
     .title-container {
       padding: 25px 0 15px 0;
       text-align: center;
@@ -76,16 +142,12 @@
       animation: shine 2s infinite;
     }
     @keyframes shine {
-      0% {
-        opacity: 0.7;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0.7;
-      }
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
     }
+
+    /* MAIN CONTENT */
     .main-content {
       display: flex;
       flex: 1;
@@ -97,9 +159,9 @@
     .button-container {
       display: flex;
       flex-direction: column;
-      /* Removed gap */
       transform: scale(1.1);
       transform-origin: top left;
+      gap: 5px; /* gap between buttons */
     }
     button.image-button {
       border: none;
@@ -111,21 +173,15 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      margin-bottom: -10px; /* Negative margin to reduce gap */
-    }
-    button.image-button:last-child {
-      margin-bottom: 0; /* No margin after last button */
+      margin-bottom: 0; /* no extra margin, gap handles spacing */
     }
     button.image-button:hover {
-      transform: scale(1.1); /* smaller hover scale */
+      transform: scale(1.1);
     }
     button.image-button img {
       display: block;
       width: 250px;
       height: auto;
-    }
-    button.image-button.scripts-button {
-      margin-right: 0px;
     }
     button.image-button.scripts-button img {
       width: 250px;
@@ -133,12 +189,11 @@
     .button-label {
       font-family: 'Montserrat', Arial, sans-serif;
       font-size: 1.5rem;
-      color: #f0f0f0; /* light text on dark buttons */
+      color: #f0f0f0;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      padding: 0;
       text-align: center;
       width: 80%;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
@@ -147,9 +202,11 @@
       user-select: none;
     }
     body.light-mode .button-label {
-      color: #141414; /* dark text in light mode */
+      color: #141414;
       text-shadow: none;
     }
+
+    /* CONTENT BOX */
     .content-box {
       flex: 1;
       padding: 20px;
@@ -159,13 +216,13 @@
       display: none;
       box-shadow: 0 0 10px #cd5c5c;
       overflow-y: auto;
-      transition: background-color 0.4s, box-shadow 0.4s, color 0.4s;
     }
     body.light-mode .content-box {
       background-color: #ddd;
-      box-shadow: 0 0 10px #5c5ccf; /* changed color as per previous request */
+      box-shadow: 0 0 10px #5c5ccf;
       color: #141414;
     }
+
     .close-button {
       float: right;
       background: none;
@@ -173,10 +230,16 @@
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
-      transition: color 0.4s;
     }
     body.light-mode .close-button {
       color: #141414;
+    }
+
+    /* ITEM STYLES */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
     }
     .uploaded-item {
       max-width: 200px;
@@ -184,56 +247,32 @@
       margin: 10px;
       border: 2px solid #cd5c5c;
       border-radius: 5px;
-      transition: transform 0.2s, box-shadow 0.4s, border-color 0.4s;
       box-shadow: 0 0 8px #cd5c5c;
-    }
-    body.light-mode .uploaded-item {
-      border-color: #5c5ccf;
-      box-shadow: 0 0 8px #5c5ccf;
+      transition: transform 0.2s, box-shadow 0.4s;
     }
     .uploaded-item:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px #cd5c5c;
     }
+    body.light-mode .uploaded-item {
+      border-color: #5c5ccf;
+      box-shadow: 0 0 8px #5c5ccf;
+    }
     body.light-mode .uploaded-item:hover {
       box-shadow: 0 0 15px #5c5ccf;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-    .uploaded-item-container {
-      position: relative;
-    }
-
-    /* Dark/Light Mode toggle switch */
-    #modeToggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      font-family: 'Montserrat', Arial, sans-serif;
-      color: #f0f0f0;
-      background-color: #cd5c5c;
-      border-radius: 20px;
-      padding: 6px 12px;
-      font-weight: bold;
-      box-shadow: 0 0 10px #cd5c5c;
-      transition: background-color 0.4s, color 0.4s;
-    }
-    body.light-mode #modeToggle {
-      background-color: #555;
-      color: #ddd;
-      box-shadow: 0 0 10px #555;
     }
   </style>
 </head>
 <body>
+
+  <div id="loader">
+    <div class="loader-container">
+      <div class="loader-line top"></div>
+      <div class="loader-logo">W</div>
+      <div class="loader-line bottom"></div>
+    </div>
+  </div>
+
   <div id="modeToggle">Light Mode</div>
 
   <div class="title-container">
@@ -244,15 +283,15 @@
     <div class="button-column">
       <div class="button-container">
         <button class="image-button" onclick="showContent('models-content')" id="models-button">
-          <img src="modelbutton.png" alt="Models Button" />
+          <img src="Models/modelbutton.png" alt="Models Button" />
           <span class="button-label">My Models</span>
         </button>
         <button class="image-button scripts-button" onclick="showContent('scripts-content')" id="scripts-button">
-          <img src="myscripts.png" alt="Scripts Button" />
+          <img src="Scripts/myscripts.png" alt="Scripts Button" />
           <span class="button-label">My Scripts</span>
         </button>
         <button class="image-button" onclick="showContent('ui-content')" id="ui-button">
-          <img src="myuis.png" alt="UI Button" />
+          <img src="UIDesigns/myuis.png" alt="UI Button" />
           <span class="button-label">My UI Designs</span>
         </button>
       </div>
@@ -279,9 +318,7 @@
 
   <script>
     function showContent(contentId) {
-      document.querySelectorAll('.content-box').forEach(box => {
-        box.style.display = 'none';
-      });
+      document.querySelectorAll('.content-box').forEach(box => box.style.display = 'none');
       document.getElementById(contentId).style.display = 'block';
     }
 
@@ -293,24 +330,15 @@
       try {
         const response = await fetch(jsonFile);
         const files = await response.json();
-
         const gallery = document.getElementById(galleryId);
         files.forEach(file => {
-          let elem;
-          if (file.type === "video") {
-            elem = document.createElement('video');
-            elem.controls = true;
-          } else {
-            elem = document.createElement('img');
-            elem.alt = file.name;
-          }
+          let elem = file.type === "video" ? document.createElement('video') : document.createElement('img');
+          if (file.type === "video") elem.controls = true;
           elem.src = file.path;
           elem.classList.add('uploaded-item');
-
           const container = document.createElement('div');
           container.className = 'uploaded-item-container';
           container.appendChild(elem);
-
           gallery.appendChild(container);
         });
       } catch (err) {
@@ -330,24 +358,18 @@
 
       modeToggle.addEventListener('click', () => {
         document.body.classList.toggle('light-mode');
-        if (document.body.classList.contains('light-mode')) {
-          modeToggle.textContent = 'Dark Mode';
-
-          modelsButton.querySelector('img').src = 'modelbuttonlight.png';
-          scriptsButton.querySelector('img').src = 'myscriptslight.png';
-          uiButton.querySelector('img').src = 'myuislight.png';
-
-          // Update button label colors handled by CSS class
-        } else {
-          modeToggle.textContent = 'Light Mode';
-
-          modelsButton.querySelector('img').src = 'modelbutton.png';
-          scriptsButton.querySelector('img').src = 'myscripts.png';
-          uiButton.querySelector('img').src = 'myuis.png';
-
-          // Update button label colors handled by CSS class
-        }
+        const light = document.body.classList.contains('light-mode');
+        modeToggle.textContent = light ? 'Dark Mode' : 'Light Mode';
+        modelsButton.querySelector('img').src = `Models/modelbutton${light ? 'light' : ''}.png`;
+        scriptsButton.querySelector('img').src = `Scripts/myscripts${light ? 'light' : ''}.png`;
+        uiButton.querySelector('img').src = `UIDesigns/myuis${light ? 'light' : ''}.png`;
       });
+
+      setTimeout(() => {
+        const loader = document.getElementById('loader');
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 500);
+      }, 2500);
     });
   </script>
 </body>
