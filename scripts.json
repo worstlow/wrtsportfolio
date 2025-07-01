@@ -1,0 +1,32 @@
+[
+  {
+    "name": "CombatSystem.mp4",
+    "type": "video",
+    "path": "Scripts/CombatSystem.mp4"
+  },
+  {
+    "name": "LoadingScreenAndPlayMenu.mp4",
+    "type": "video",
+    "path": "Scripts/LoadingScreenAndPlayMenu.mp4"
+  },
+  {
+    "name": "Transformation.mp4",
+    "type": "video",
+    "path": "Scripts/Transformation.mp4"
+  },
+  {
+    "name": "Settings.mp4",
+    "type": "video",
+    "path": "Scripts/WorkingSettings.mp4"
+  },
+  {
+    "name": "DomainExpansion.mp4",
+    "type": "video",
+    "path": "Scripts/DomainExpansionM.mp4"
+  },
+  {
+    "name": "EnmuOculus.mp4",
+    "type": "video",
+    "path": "Scripts/EnmuOculus.mp4"
+  }
+]
