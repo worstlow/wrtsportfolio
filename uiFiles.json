@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Leaderboard.png",
+    "type": "image",
+    "path": "UIDesigns/AllTimeLegendsUI.png"
+  },
+  {
+    "name": "SeedShop.mp4",
+    "type": "video",
+    "path": "UIDesigns/SeedShop.mp4"
+  },
+  {
+    "name": "Settings.png",
+    "type": "image",
+    "path": "UIDesigns/Settings.png"
+  },
+  {
+    "name": "Settings2.png",
+    "type": "image",
+    "path": "UIDesigns/Settingsv2.png"
+  },
+  {
+    "name": "Buttons.mp4",
+    "type": "video",
+    "path": "UIDesigns/Buttons.mp4"
+  },
+   {
+    "name": "SpikyUnit.mp4",
+    "type": "video",
+    "path": "UIDesigns/Units.mp4"
+  }
+]

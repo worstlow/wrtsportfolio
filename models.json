@@ -1,0 +1,17 @@
+[
+  {
+    "name": "model1.png",
+    "type": "image",
+    "path": "Models/Model1C.png"
+  },
+  {
+    "name": "Byte.png",
+    "type": "image",
+    "path": "Models/ByteShift.png"
+  },
+  {
+    "name": "BumblebeeLegs.png",
+    "type": "image",
+    "path": "Models/LegsBumble.png"
+  }
+]
